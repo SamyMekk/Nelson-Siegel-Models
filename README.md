@@ -14,6 +14,6 @@ Il contient également un rapport effectué dans le cadre de cette étude ainsi 
         
 Un lien vers une application des diffusions de courbes de taux sera également disponible via l'URL suivante effectuée via le package "Streamlit" de Python :
 
-https://samymekkaouireconstitutiontaux.streamlit.app/
+https://samymekkaouimodelesNS.streamlit.app/
 
 N'hésitez pas à me contacter si vous voulez + de détails sur cette étude
