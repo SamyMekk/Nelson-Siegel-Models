@@ -172,7 +172,7 @@ def creationPDF(fichierSortie, dictResultat):
         lDist =[list(join_dParams[l].items())[0][1]]
         lp =  [round(x, 3) for x in list(join_dParams[l].items())[1][1]]
         tKS = [round(x, 3) for x in list(join_dParams[l].items())[2][1]]
-        distS= distS.append([lDist + [lp] + [tKS]], ignore_index=True)
+        distS= distS.concat([lDist + [lp] + [tKS]], ignore_index=True)
     
     distS.columns = ['Distribution', 'paramètres', 'p-value K-S']
     distS.index = listeBetasG
