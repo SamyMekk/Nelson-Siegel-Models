@@ -6,6 +6,14 @@ Created on Wed Apr 12 15:51:27 2023
 """
 
 
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Apr 12 15:51:27 2023
+
+@author: abrahimi
+"""
+
+
 import seaborn as sns
 import pandas as pd
 import datetime
@@ -163,42 +171,42 @@ def creationPDF(fichierSortie, dictResultat):
     # Page 3 : Matrice de corrélation et lois
     #--------------------------------------------
     
-    #listeBetasG = [x + ' - Tn' for x in legendβ[:nβ]] +  [x + ' - Ti' for x in legendβ[:nβ]] 
+    # listeBetasG = [x + ' - Tn' for x in legendβ[:nβ]] +  [x + ' - Ti' for x in legendβ[:nβ]] 
        
-    #fig, axis = plt.subplots(2, 1, dpi = 150, figsize = (13,6))
+    # fig, axis = plt.subplots(2, 1, dpi = 150, figsize = (13,6))
    
-    #distS = pd.DataFrame()
-    #for l in range(len(join_dParams)):
-     #   lDist =[list(join_dParams[l].items())[0][1]]
-      #  lp =  [round(x, 3) for x in list(join_dParams[l].items())[1][1]]
-       # tKS = [round(x, 3) for x in list(join_dParams[l].items())[2][1]]
-        #distS= distS.concat([lDist + [lp] + [tKS]], ignore_index=True)
+    # distS = pd.DataFrame()
+    # for l in range(len(join_dParams)):
+    #     lDist =[list(join_dParams[l].items())[0][1]]
+    #     lp =  [round(x, 3) for x in list(join_dParams[l].items())[1][1]]
+    #     tKS = [round(x, 3) for x in list(join_dParams[l].items())[2][1]]
+    #     distS= distS.append([lDist + [lp] + [tKS]], ignore_index=True)
     
-   # distS.columns = ['Distribution', 'paramètres', 'p-value K-S']
-    #distS.index = listeBetasG
-    #distS.reset_index(inplace =True)
+    # distS.columns = ['Distribution', 'paramètres', 'p-value K-S']
+    # distS.index = listeBetasG
+    # distS.reset_index(inplace =True)
     
-    #formatTable(axis[0],  distS)
+    # formatTable(axis[0],  distS)
     # axis[0].set(title='Distribution retenues β')
     
     
 
     
     # Matrice de corrélation observée
-   # mask = [[False]*n +[True] *(2*nβ-n) for n in range(1,2*nβ+1)]
-    #axis[1].set(title='Matrice de corrélation β')
-    #matriceCorrelDf = pd.DataFrame(matriceCorrel, index = listeBetasG, columns = listeBetasG )
-    #sns.heatmap(matriceCorrelDf, 
-     #           annot = True, 
-      #          fmt='.2g',
-       #         cmap= 'coolwarm',
-                #mask = mask,
-        #        ax = axis[1])  
+    # mask = [[False]*n +[True] *(2*nβ-n) for n in range(1,2*nβ+1)]
+    # axis[1].set(title='Matrice de corrélation β')
+    # matriceCorrelDf = pd.DataFrame(matriceCorrel, index = listeBetasG, columns = listeBetasG )
+    # sns.heatmap(matriceCorrelDf, 
+    #             annot = True, 
+    #             fmt='.2g',
+    #             cmap= 'coolwarm',
+    #             #mask = mask,
+    #             ax = axis[1])  
     
-    #fig.tight_layout()
-    #plt.savefig(pp, format='pdf', dpi = 100)
+    # fig.tight_layout()
+    # plt.savefig(pp, format='pdf', dpi = 100)
     
-    #plt.close('all')
+    # plt.close('all')
     
     # Page 4 : Courbes 
     #--------------------------------------------
@@ -366,4 +374,5 @@ def creationPDF(fichierSortie, dictResultat):
 
     
    
+    
     

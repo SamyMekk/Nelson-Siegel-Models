@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Created on Fri May 19 15:19:40 2023
 
@@ -7,6 +8,7 @@ Created on Fri May 19 15:19:40 2023
 
 import pandas as pd
 import numpy as np
+from tqdm import tqdm
 from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -19,10 +21,8 @@ import streamlit
 
 # Partie Import des Données
 
-
 streamlit.title("Test d'application pour le calcul de chocs de taux en fonction de la paramètrisation d'un fichier Excel")
-
-
+        
 
 def lanceAnalyse(rep, fichierCalibrage, baseTnDf, baseTiDf, listeMaturites, listeMaturitesReduite):
         
@@ -64,7 +64,7 @@ def lanceAnalyse(rep, fichierCalibrage, baseTnDf, baseTiDf, listeMaturites, list
     df = pd.read_excel(io = fichierCalibrage, parse_dates = True, skiprows=3, header = None, index_col = 1).iloc[:,1:]
     nModeles = df.shape[1]
     
-    for k in range(nModeles):
+    for k in tqdm(range(nModeles)):
            
         # Définition des variables
         label = df.loc["label"].iloc[k]
