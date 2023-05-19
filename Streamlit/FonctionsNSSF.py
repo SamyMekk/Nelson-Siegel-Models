@@ -6,12 +6,11 @@ Created on Thu Mar 30 11:21:49 2023
 """
 
 
-import pandas as pd
+import pagndas as pd
 import numpy as np
 import math
 import time
 import copy
-from tqdm import tqdm
 from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from itertools import product    
