@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 from itertools import product    
 import seaborn as sns
 from Simulations import *
-from ImportetTraitementdesBases import *
 from Taux import *
 from creerPDF import *
 
