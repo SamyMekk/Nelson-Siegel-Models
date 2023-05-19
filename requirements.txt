@@ -8,6 +8,5 @@ scipy
 xlsxwriter
 pyxlsb
 seaborn==0.12.2
-copy
 datetime
 altair==4.0.0
