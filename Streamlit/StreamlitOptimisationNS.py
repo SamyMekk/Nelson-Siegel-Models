@@ -11,6 +11,8 @@ import numpy as np
 from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from io import BytesIO
+from pyxlsb import open_workbook as open_xlsb
+
 import streamlit 
 
 
@@ -210,7 +212,7 @@ def to_excel(df):
     worksheet = writer.sheets['Sheet1']
     format1 = workbook.add_format({'num_format': '0.00'}) 
     worksheet.set_column('A:A', None, format1)  
-    writer.save()
+    writer.close()
     processed_data = output.getvalue()
     return processed_data
 
