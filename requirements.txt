@@ -7,9 +7,7 @@ openpyxl
 scipy
 xlsxwriter
 pyxlsb
-streamlit
 seaborn==0.12.2
-itertools
 copy
 datetime
 altair==4.0.0
