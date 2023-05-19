@@ -19,7 +19,7 @@ import seaborn as sns
 from Simulations import *
 from ImportetTraitementdesBases import *
 from Taux import *
-from creerPDFv9 import *
+from creerPDF import *
 
 def getFonct(typeModele):
     if typeModele == 'NS' : #Nelson-Siegel
