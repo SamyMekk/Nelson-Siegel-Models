@@ -6,7 +6,7 @@ Created on Thu Mar 30 11:21:49 2023
 """
 
 
-import pagndas as pd
+import pandas as pd
 import numpy as np
 import math
 import time
