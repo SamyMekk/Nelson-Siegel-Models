@@ -28,6 +28,7 @@ from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.interpolate import griddata
 from matplotlib.artist import allow_rasterization
+import streamlit as st
 
 def formatTable(ax, table):
     ax.get_xaxis().set_visible(False)
@@ -85,6 +86,7 @@ def creationPDF(fichierSortie, dictResultat):
     matriceCorrel = dictResultat['matriceCorrel']
     legendλ = ['λ1', 'λ2']
     legendβ = ['β0', 'β1', 'β2', 'β3']
+    
     
     pp = PdfPages(fichierSortie)
 
@@ -367,7 +369,13 @@ def creationPDF(fichierSortie, dictResultat):
     plt.savefig(pp, format='pdf')
     plt.close('all')
     pp.close()
- 
+    with open(fichierSortie, "rb") as pdf_file:
+        PDFbyte = pdf_file.read()
+    st.download_button(label="Télécharger l'analyse", 
+        data=PDFbyte,
+        file_name="Analyse.pdf",
+        mime='application/octet-stream')
+
 
     
     
