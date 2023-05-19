@@ -185,20 +185,20 @@ def creationPDF(fichierSortie, dictResultat):
 
     
     # Matrice de corrélation observée
-    mask = [[False]*n +[True] *(2*nβ-n) for n in range(1,2*nβ+1)]
-    axis[1].set(title='Matrice de corrélation β')
-    matriceCorrelDf = pd.DataFrame(matriceCorrel, index = listeBetasG, columns = listeBetasG )
-    sns.heatmap(matriceCorrelDf, 
-                annot = True, 
-                fmt='.2g',
-                cmap= 'coolwarm',
+   # mask = [[False]*n +[True] *(2*nβ-n) for n in range(1,2*nβ+1)]
+    #axis[1].set(title='Matrice de corrélation β')
+    #matriceCorrelDf = pd.DataFrame(matriceCorrel, index = listeBetasG, columns = listeBetasG )
+    #sns.heatmap(matriceCorrelDf, 
+     #           annot = True, 
+      #          fmt='.2g',
+       #         cmap= 'coolwarm',
                 #mask = mask,
-                ax = axis[1])  
+        #        ax = axis[1])  
     
-    fig.tight_layout()
-    plt.savefig(pp, format='pdf', dpi = 100)
+    #fig.tight_layout()
+    #plt.savefig(pp, format='pdf', dpi = 100)
     
-    plt.close('all')
+    #plt.close('all')
     
     # Page 4 : Courbes 
     #--------------------------------------------
