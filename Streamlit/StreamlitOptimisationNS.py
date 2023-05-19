@@ -39,7 +39,7 @@ def user_input():
     
 df=user_input()
 
-streamlit.subheader('Voici les Taux que vous avez choisis : ')
+streamlit.subheader('Voici les Taux que vous avez choisis en Input : ')
 
 streamlit.write(df)
 
