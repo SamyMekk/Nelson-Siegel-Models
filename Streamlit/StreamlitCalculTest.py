@@ -253,8 +253,7 @@ try:
         baseTn = baseTnDf.to_numpy()*100 
         baseTiDf = baseTnTi.iloc[:,30:]
         baseTi = baseTiDf.to_numpy()
-        rep=streamlit.text_input("Ecrivez le répertoire vers lequel vous souhaitez que l'analyse sous format PDF soit stocké. N'oubliez pas d'ajouter un \ pour que le fichier soit bien sauvegardé dans le dernier dossier écrit","Inscrivez un répertoire valide ")
-        streamlit.write(rep)
+        rep=streamlit.text_input("Choississez un nom pour le Fichier PDF lors du téléchargement auquel sera collé le nom du label")
         if streamlit.button("Si vous cliquez sur ce bouton, l'analyse sera lancée"):
             lanceAnalyse(rep,fichierCalibrage,baseTnDf,baseTiDf,listeMaturites,listeMaturitesReduite)
     elif len(Fichier)!=2:

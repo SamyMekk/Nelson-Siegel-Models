@@ -373,7 +373,7 @@ def creationPDF(fichierSortie, dictResultat):
         PDFbyte = pdf_file.read()
     st.download_button(label="Télécharger l'analyse", 
         data=PDFbyte,
-        file_name="Analyse.pdf",
+        file_name=fichierSortie,
         mime='application/octet-stream')
 
 
