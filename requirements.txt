@@ -6,6 +6,7 @@ scikit-learn==1.1.2
 openpyxl
 scipy
 xlsxwriter
+tqdm
 pyxlsb
 seaborn==0.12.2
 datetime
