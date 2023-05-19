@@ -254,6 +254,7 @@ try:
         baseTiDf = baseTnTi.iloc[:,30:]
         baseTi = baseTiDf.to_numpy()
         rep=streamlit.text_input("Ecrivez le répertoire vers lequel vous souhaitez que l'analyse sous format PDF soit stocké. N'oubliez pas d'ajouter un \ pour que le fichier soit bien sauvegardé dans le dernier dossier écrit","Inscrivez un répertoire valide ")
+        streamlit.write(rep)
         cheminSorties=rep
         if streamlit.button("Si vous cliquez sur ce bouton, l'analyse sera lancée"):
             lanceAnalyse(rep,fichierCalibrage,baseTnDf,baseTiDf,listeMaturites,listeMaturitesReduite)
