@@ -64,7 +64,7 @@ def lanceAnalyse(rep, fichierCalibrage, baseTnDf, baseTiDf, listeMaturites, list
     df = pd.read_excel(io = fichierCalibrage, parse_dates = True, skiprows=3, header = None, index_col = 1).iloc[:,1:]
     nModeles = df.shape[1]
     
-    for k in tqdm(range(nModeles)):
+    for k in range(nModeles):
            
         # Définition des variables
         label = df.loc["label"].iloc[k]
