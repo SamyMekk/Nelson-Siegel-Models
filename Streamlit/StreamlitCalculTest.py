@@ -12,8 +12,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from Simulations import *
 from Taux import *
-from creerPDFv9 import *
-from FonctionsNSSFv9 import *
+from creerPDF import *
+from FonctionsNSSF import *
 import streamlit
 
 
