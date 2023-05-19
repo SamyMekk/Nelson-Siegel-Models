@@ -7,7 +7,6 @@ Created on Fri May 19 15:19:40 2023
 
 import pandas as pd
 import numpy as np
-from tqdm import tqdm
 from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 import seaborn as sns
