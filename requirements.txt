@@ -7,4 +7,9 @@ openpyxl
 scipy
 xlsxwriter
 pyxlsb
+tqdm
+seaborn
+itertools
+copy
+datetime
 altair==4.0.0
