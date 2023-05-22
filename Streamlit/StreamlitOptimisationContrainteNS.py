@@ -93,9 +93,9 @@ def obj1(arguments,data,modele):
     
 def minimisation(data,modele):
     if modele=="NS":
-        first_guess=[0.042590,0.034950-0.042590,0.01,2]
-        bounds=((data["Taux"][data.index[-1]]-0.01,data["Taux"][data.index[-1]]+0.01),(data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]-0.005,data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]+0.005),(-0.5,0.5),(0.1,10))
-        minimisation=minimize(obj1,first_guess,args=(data,modele),method="Nelder-Mead",bounds=bounds,options={"maxiter":10000})
+        first_guess=[0.02,0.01,0.01,2]
+        # bounds=((data["Taux"][data.index[-1]]-0.01,data["Taux"][data.index[-1]]+0.01),(data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]-0.005,data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]+0.005),(-0.5,0.5),(0.1,10))
+        minimisation=minimize(obj1,first_guess,args=(data,modele),method="Nelder-Mead",options={"maxiter":100000})
         b0,b1,b2,lambda1=minimisation.x
         dictParam={'β0':b0,
               'β1':b1,
@@ -104,9 +104,9 @@ def minimisation(data,modele):
         Data=pd.DataFrame(dictParam,index=["Résultats Paramètres Opti"])
         return Data
     if modele=="NSS" or modele=="NSSF":
-        first_guess=[0.042590,0.034950-0.042590,0.0001,0.0003,0.12,2]
-        bounds=((data["Taux"][data.index[-1]]-0.01,data["Taux"][data.index[-1]]+0.01),(data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]-0.005,data["Taux"][data.index[0]]-data["Taux"][data.index[1]]+0.005),(-0.5,0.5),(-0.5,0.5),(0.1,5),(5,30))
-        minimisation=minimize(obj1,first_guess,args=(data,modele),method="Nelder-Mead",bounds=bounds,options={"maxiter":10000})
+        first_guess=[0.02,0.01,0.0001,0.0003,0.12,2]
+        # bounds=((data["Taux"][data.index[-1]]-0.01,data["Taux"][data.index[-1]]+0.01),(data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]-0.005,data["Taux"][data.index[0]]-data["Taux"][data.index[1]]+0.005),(-0.5,0.5),(-0.5,0.5),(0.1,5),(5,30))
+        minimisation=minimize(obj1,first_guess,args=(data,modele),method="Nelder-Mead",options={"maxiter":100000})
         b0,b1,b2,b3,lambda1,lambda2=minimisation.x
         dictParam={'β0':b0,
               'β1':b1,
