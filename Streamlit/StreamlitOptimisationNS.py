@@ -138,10 +138,11 @@ def DataTauxNS(b0: float, b1:float,b2:float, lambda1:float):
 
 def DataTauxNS2(b0: float, b1:float,b2:float, lambda1:float):
     Durée = [x/12 for x in range(0,481)] 
+    DuréeM=[x for x in range (0,481)]
     L=[]
     for element in Durée :
         L.append(modeleNS(b0,b1,b2,lambda1,element))
-    dictN = {'Temps' : Durée, 'Taux' : L}
+    dictN = {'Temps' : DuréeM, 'Taux' : L}
     TauxN = pd.DataFrame.from_dict(data = dictN)
     fig, ax = plt.subplots(1,1, figsize=(10, 10))
     ax.plot(TauxN["Temps"],TauxN["Taux"])
@@ -165,11 +166,12 @@ def DataTauxNSS(b0: float, b1:float,b2:float,b3:float ,lambda1:float,lambda2:flo
     return TauxN,fig
 
 def DataTauxNSS2(b0: float, b1:float,b2:float,b3:float ,lambda1:float,lambda2:float):
-    Durée = [x/12 for x in range(0,481)] 
+    Durée = [x/12 for x in range(0,481)]
+    DuréeM=[x for x in range(0,481)]
     L=[]
     for element in Durée :
         L.append(modeleNSS(b0,b1,b2,b3,lambda1,lambda2,element))
-    dictN = {'Temps' : Durée, 'Taux' : L}
+    dictN = {'Temps' : DuréeM, 'Taux' : L}
     TauxN = pd.DataFrame.from_dict(data = dictN)
     fig, ax = plt.subplots(1,1, figsize=(10, 10))
     ax.plot(TauxN["Temps"],TauxN["Taux"])
@@ -193,10 +195,11 @@ def DataTauxNSSF(b0: float, b1:float,b2:float,b3:float, lambda1:float,lambda2:fl
 
 def DataTauxNSSF2(b0: float, b1:float,b2:float,b3:float ,lambda1:float,lambda2:float):
     Durée = [x/12 for x in range(0,481)] 
+    DuréeM=[x for x in range (0,481)]
     L=[]
     for element in Durée :
         L.append(modeleNSSF(b0,b1,b2,b3,lambda1,lambda2,element))
-    dictN = {'Temps' : Durée, 'Taux' : L}
+    dictN = {'Temps' : DuréeM, 'Taux' : L}
     TauxN = pd.DataFrame.from_dict(data = dictN)
     fig, ax = plt.subplots(1,1, figsize=(10, 10))
     ax.plot(TauxN["Temps"],TauxN["Taux"])
