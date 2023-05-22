@@ -39,11 +39,22 @@ def user_input():
         Parametres=pd.DataFrame(data,index=["Taux"]).T
         return Parametres
     
+def user_input2():
+    Contrainteb0=streamlit.sidebar.number_input("Choississez le range de variation de β0 ( par exemple +/- 1% autour du Taux 20 ans) ",value= 0.01)
+    Contrainteb1=streamlit.sidebar.number_input("Choississez le range de variation de β1 ( par exemple +/- 1% autour de la diff entre Taux 2 ans et Taux 20 ans) ",value= 0.005)
+    data={"Contrainte β0":Contrainteb0,
+          "Contrainte β1":Contrainteb1}
+    Parametres=pd.DataFrame(data,index=["Contraintes +/-"]).T
+    return Parametres
+    
+    
 df=user_input()
+df2=user_input2()
 
 streamlit.subheader('Voici les Taux que vous avez choisis en Input : ')
 
 streamlit.write(df)
+streamlit.write(df2)
 
 
 # Définition des fonctionnelles 
@@ -91,10 +102,12 @@ def obj1(arguments,data,modele):
     
     
 def minimisation(data,modele):
+    Contrainteb0=float(df2.transpose()["Contrainte β0"][0])
+    Contrainteb1=float(df2.transpose()["Contrainte β1"][0])
     if modele=="NS":
-        first_guess=[0.042590,0.034950-0.042590,0.01,2]
-        #bounds=((data["Taux"][data.index[-1]]-0.01,data["Taux"][data.index[-1]]+0.01),(data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]-0.005,data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]+0.005),(-0.5,0.5),(0.1,10))
-        minimisation=minimize(obj1,first_guess,args=(data,modele),method="Nelder-Mead",options={"maxiter":10000})
+        first_guess=[0.02,0.01,0.01,2]
+        bounds=((data["Taux"][data.index[-1]]-Contrainteb0,data["Taux"][data.index[-1]]+Contrainteb0),(data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]-Contrainteb1,data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]+Contrainteb1),(-0.5,0.5),(0.1,30))
+        minimisation=minimize(obj1,first_guess,args=(data,modele),method="Nelder-Mead",bounds=bounds,options={"maxiter":100000})
         b0,b1,b2,lambda1=minimisation.x
         dictParam={'β0':b0,
               'β1':b1,
@@ -103,9 +116,9 @@ def minimisation(data,modele):
         Data=pd.DataFrame(dictParam,index=["Résultats Paramètres Opti"])
         return Data
     if modele=="NSS" or modele=="NSSF":
-        first_guess=[0.042590,0.034950-0.042590,0.0001,0.0003,0.12,2]
-        # bounds=((data["Taux"][data.index[-1]]-0.01,data["Taux"][data.index[-1]]+0.01),(data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]-0.005,data["Taux"][data.index[0]]-data["Taux"][data.index[1]]+0.005),(-0.5,0.5),(-0.5,0.5),(0.1,5),(5,30))
-        minimisation=minimize(obj1,first_guess,args=(data,modele),method="Nelder-Mead",options={"maxiter":10000})
+        first_guess=[0.02,0.01,0.0001,0.0003,0.12,2]
+        bounds=((data["Taux"][data.index[-1]]-Contrainteb0,data["Taux"][data.index[-1]]+Contrainteb0),(data["Taux"][data.index[0]]-data["Taux"][data.index[-1]]-Contrainteb1,data["Taux"][data.index[0]]-data["Taux"][data.index[1]]+Contrainteb1),(-0.5,0.5),(-0.5,0.5),(0.1,5),(5,30))
+        minimisation=minimize(obj1,first_guess,args=(data,modele),method="Nelder-Mead",bounds=bounds,options={"maxiter":100000})
         b0,b1,b2,b3,lambda1,lambda2=minimisation.x
         dictParam={'β0':b0,
               'β1':b1,
