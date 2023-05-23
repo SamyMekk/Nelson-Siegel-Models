@@ -1,4 +1,4 @@
-    # -*- coding: utf-8 -*-
+
 """
 Created on Tue May 16 16:44:21 2023
 
@@ -15,7 +15,7 @@ from pyxlsb import open_workbook as open_xlsb
 import streamlit 
 
 
-streamlit.header("Application simple comme optimiseur de paramètres des modèles NS avec Contraintes et sans Taux Très Court Terme")
+streamlit.header("Application simple comme optimiseur de paramètres des modèles NS avec Contrainte et Choix du Taux court Terme")
 
 
 
@@ -27,17 +27,18 @@ option=streamlit.selectbox("Choississez le type de modèle que vous voulez étud
 streamlit.subheader("Vous avez choisi une optimisation avec le modèle " + str(option))
 
 def user_input():
+        Taux0=streamlit.sidebar.number_input("Choississez la valeur du Taux très court-terme ",value= 0.013)
         Taux2=streamlit.sidebar.number_input("Choississez la valeur du Taux 2 ans ",value= 0.018)
         Taux5=streamlit.sidebar.number_input("Choississez la valeur du Taux 5 ans ",value= 0.027)
         Taux10=streamlit.sidebar.number_input("Choississez la valeur du Taux 10 ans ",value= 0.033)
         Taux20=streamlit.sidebar.number_input("Choississez la valeur du Taux 20 ans",value= 0.034)
-        data={2: Taux2,
+        data={1/52:Taux0,
+            2: Taux2,
           5:Taux5,
           10:Taux10,
           20:Taux20}
         Parametres=pd.DataFrame(data,index=["Taux"]).T
         return Parametres
-
     
 def user_input2():
     Contrainteb0=streamlit.sidebar.number_input("Choississez le range de variation de β0 ( par exemple +/- 1% autour du Taux 20 ans) ",value= 0.01)
@@ -152,7 +153,7 @@ def minimisation(data,modele):
 
 
 def DataTauxNS(b0: float, b1:float,b2:float, lambda1:float):
-    Durée=[2,5,10,20]
+    Durée=[1/52,2,5,10,20]
     L=[]
     for element in Durée :
         L.append(modeleNS(b0,b1,b2,lambda1,element))
@@ -181,7 +182,7 @@ def DataTauxNS2(b0: float, b1:float,b2:float, lambda1:float):
     return TauxN,fig
   
 def DataTauxNSS(b0: float, b1:float,b2:float,b3:float ,lambda1:float,lambda2:float):
-    Durée=[2,5,10,20]
+    Durée=[1/52,2,5,10,20]
     L=[]
     for element in Durée :
         L.append(modeleNSS(b0,b1,b2,b3,lambda1,lambda2,element))
@@ -210,7 +211,7 @@ def DataTauxNSS2(b0: float, b1:float,b2:float,b3:float ,lambda1:float,lambda2:fl
     return TauxN,fig
   
 def DataTauxNSSF(b0: float, b1:float,b2:float,b3:float, lambda1:float,lambda2:float):
-    Durée=[2,5,10,20]
+    Durée=[1/52,2,5,10,20]
     L=[]
     for element in Durée :
         L.append(modeleNSSF(b0,b1,b2,b3,lambda1,lambda2,element))
@@ -254,10 +255,7 @@ def to_excel(df1,df2,df3,name):
     return processed_data
 
 
-
 SheetName=streamlit.text_input("Choississez le nom de la feuille Excel en Sortie")
-
-
 
 if streamlit.button("Cliquer sur le bouton pour lancer l'analyse"):
     
@@ -307,13 +305,5 @@ if streamlit.button("Cliquer sur le bouton pour lancer l'analyse"):
 
         
 
-
-
-
-        
-      
-
-
-        
 
 

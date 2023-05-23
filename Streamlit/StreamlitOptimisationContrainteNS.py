@@ -13,11 +13,10 @@ from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from io import BytesIO
 from pyxlsb import open_workbook as open_xlsb
-
 import streamlit 
 
 
-streamlit.header("Application simple comme optimiseur de paramètres des modèles NS")
+streamlit.header("Application simple comme optimiseur de paramètres des modèles NS sans contrainte sur les paramètres")
 
 
 
@@ -208,12 +207,13 @@ def DataTauxNSSF2(b0: float, b1:float,b2:float,b3:float ,lambda1:float,lambda2:f
 
 
 # Passage au Format Excel
-def to_excel(df):
+def to_excel(df1,df2,name):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
-    df.to_excel(writer, index=False, sheet_name='Sheet1')
+    df1.to_excel(writer, index=False, sheet_name=name)
+    df2.to_excel(writer,index=True,sheet_name=name,startcol=3)
     workbook = writer.book
-    worksheet = writer.sheets['Sheet1']
+    worksheet = writer.sheets[name]
     format1 = workbook.add_format({'num_format': '0.00'}) 
     worksheet.set_column('A:A', None, format1)  
     writer.close()
@@ -222,7 +222,11 @@ def to_excel(df):
 
 
 
+SheetName=streamlit.text_input("Choississez le nom de la feuille Excel en Sortie")
+
+
 if streamlit.button("Cliquer sur le bouton pour lancer l'analyse"):
+    
     if option=="NS":
         ResultatOpti=minimisation(df,option)
         streamlit.subheader("Voici les Résultats issus de l'optimisation")
@@ -234,7 +238,7 @@ if streamlit.button("Cliquer sur le bouton pour lancer l'analyse"):
         streamlit.pyplot(fig)
         streamlit.subheader("Voici la courbe obtenue jusqu'à 40 ans avec les paramètres du modèle : ")
         streamlit.pyplot(fig2)
-        Excel=to_excel(CourbeTaux2)
+        Excel=to_excel(CourbeTaux2,ResultatOpti,SheetName)
         streamlit.download_button(label="Télécharger la courbe " +  str(option) + " au format xlsx",data=Excel,file_name="CourbeTauxNS.xlsx")
     if option=="NSS":
         ResultatOpti=minimisation(df,option)
@@ -247,7 +251,7 @@ if streamlit.button("Cliquer sur le bouton pour lancer l'analyse"):
         streamlit.pyplot(fig)
         streamlit.subheader("Voici la courbe obtenue jusqu'à 40 ans avec les paramètres du modèle : ")
         streamlit.pyplot(fig2)
-        Excel=to_excel(CourbeTaux2)
+        Excel=to_excel(CourbeTaux2,ResultatOpti,SheetName)
         streamlit.download_button(label="Télécharger la courbe " +  str(option) + " au format xlsx",data=Excel,file_name="CourbeTauxNSS.xlsx")
     if option=="NSSF":
         ResultatOpti=minimisation(df,option)
@@ -260,7 +264,7 @@ if streamlit.button("Cliquer sur le bouton pour lancer l'analyse"):
         streamlit.pyplot(fig)
         streamlit.subheader("Voici la courbe obtenue jusqu'à 40 ans avec les paramètres du modèle : ")
         streamlit.pyplot(fig2)
-        Excel=to_excel(CourbeTaux2)
+        Excel=to_excel(CourbeTaux2,ResultatOpti,SheetName)
         streamlit.download_button(label="Télécharger la courbe " +  str(option) + " au format xlsx",data=Excel,file_name="CourbeTauxNSSF.xlsx")
     
         
@@ -268,5 +272,6 @@ if streamlit.button("Cliquer sur le bouton pour lancer l'analyse"):
 
 
         
+
 
 
