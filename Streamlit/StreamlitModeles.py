@@ -114,10 +114,43 @@ def user_input(option):
    
 df=user_input(option)
 
-st.header("Vous avez sélectionné le modèle " + str(option))
+st.header("Vous avez sélectionné le modèle " + str(option) + " dont on rappelle la dynamique ci-dessous")
 
 
-st.header("Nous rappelons ici l'équation du modèle : ")
+
+if option=="NS":
+    st.latex("r(t)=β_{0}+β_{1}\\frac{(1-e^{-\\frac{t}{\lambda}})}{\\frac{t}{\lambda}}++β_{2}(\\frac{(1-e^{-\\frac{t}{\lambda}})}{\\frac{t}{\lambda}}-e^{-\\frac{t}{\lambda}})")
+    st.subheader("Avec :")
+    st.write("$β_{0}$ : le taux de long terme")
+    st.write("$β_{1}$ : le facteur de pentification")
+    st.write("$β_{2}$ : le facteur de courbure")
+    st.write("$\lambda$ : le facteur temporel associé à la courbure")
+
+
+if option=="NSS":
+    st.latex("r(t)=β_{0}+β_{1}\\frac{(1-e^{-\\frac{t}{\lambda_{1}}})}{\\frac{t}{\lambda_{1}}}+β_{2}(\\frac{(1-e^{-\\frac{t}{\lambda_{1}}})}{\\frac{t}{\lambda_{1}}}-e^{-\\frac{t}{\lambda_{1}}})+β_{3}(\\frac{(1-e^{-\\frac{t}{\lambda_{2}}})}{\\frac{t}{\lambda_{2}}}-e^{-\\frac{t}{\lambda_{2}}})")
+    st.subheader("Avec :")
+    st.write("$β_{0}$ : le taux de long terme")
+    st.write("$β_{1}$ : le facteur de pentification")
+    st.write("$β_{2}$ : le premier facteur de courbure")
+    st.write("$β_{3}$ : le second facteur de courbure")
+    st.write("$\lambda_{1}$ : le facteur temporel associé à la première courbure")
+    st.write("$\lambda_{2} $ : le facteur temporel associé à la seconde courbure")    
+
+
+
+elif option=="NSSF":
+    st.latex("r(t)=β_{0}+β_{1}\\frac{(1-e^{-\\frac{t}{\lambda_{1}}})}{\\frac{t}{\lambda_{1}}}+β_{2}(\\frac{(1-e^{-\\frac{t}{\lambda_{1}}})}{\\frac{t}{\lambda_{1}}}-e^{-\\frac{t}{\lambda_{1}}})+β_{3}((\\frac{t}{\lambda_{2}})^{2}e^{-\\frac{t}{\lambda_{2}}})")
+    st.subheader("Avec :")
+    st.write("$β_{0}$ : le taux de long terme")
+    st.write("$β_{1}$ : le facteur de pentification")
+    st.write("$β_{2}$ : le premier facteur de courbure")
+    st.write("$β_{3}$ : le second facteur de courbure")
+    st.write("$\lambda_{1}$ : le facteur temporel associé à la première courbure")
+    st.write("$\lambda_{2} $ : le facteur temporel associé à la seconde courbure")    
+
+
+
 
 st.subheader('Voici les paramètres du modèle que vous avez choisi')
 
